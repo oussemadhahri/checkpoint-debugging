@@ -1,38 +1,50 @@
-import React, { useState } from 'react';
+
 import './App.css';
-
-function Counter({ initialCount }) {
-  const [count, setCount] = useState(initialCount);
-
-  return (
-    <div>
-      <h2>Counter Component</h2>
-      <p>Count: {count}</p>
-      <button onClick={() => setCount((prevCount) => prevCount + 1)}>Increment</button>
-    </div>
-  );
-}
-
-function UserProfile({ name, age = 'Unknown' }) {
-  return (
-    <div>
-      <h2>User Profile</h2>
-      <p>Name: {name}</p>
-      <p>Age: {age}</p>
-    </div>
-  );
-}
-
+import AddMovie from './components/AddMovie';
+import MovieList from './components/MovieList'; 
+import {moviesData} from './moviesData';  
+import { useState } from 'react';
+import FilterByTitle from './components/FilterByTitle';
+import  FilterByRate from './components/Rating';
+import { Modal, Button } from 'antd';
 function App() {
-  const [userName, setUserName] = useState('oussema');
+  const [movies, setMovies] = useState(moviesData);
+  const [searchTitle, setSearchTitle] = useState('');
+  const [searchRate, setSearchRate]= useState(1)
+  const [showAddForm, setShowAddForm] = useState(false);
+  const movieAdd =(newMovie)=>{
+    setMovies([...movies, newMovie]);
+    
+  }
 
   return (
-    <div className="App">
-      <h1>React Debugging Practice</h1>
+    <div className="app">
+      <h1>movie store</h1>
+      <FilterByTitle 
+     searchTitle={searchTitle}
+      setSearchTitle={setSearchTitle}/>
+      <div style={{display:'flex', justifyContent:'center', alignItems:'center', margin:'20px'}}> 
+        <FilterByRate  
+      searchRate={searchRate}
+      setSearchRate={setSearchRate}
+      isRating={false}/>
+      </div>
+     
+      <div style={{width: '60%', margin: '16px auto', display: 'flex', justifyContent: 'center'}}>
+        <Button type="primary" onClick={() => setShowAddForm(true)}>Add Movie</Button>
+      </div>
 
-      <UserProfile name={userName} age={23} />
-
-      <Counter initialCount={5} />
+      <Modal
+        title="Add Movie"
+        open={showAddForm}
+        onCancel={() => setShowAddForm(false)}
+        footer={null}
+        centered
+        width={900}
+      >
+        <AddMovie movieAdd={movieAdd} onClose={() => setShowAddForm(false)} />
+      </Modal>
+      <MovieList movies={movies} searchTitle={searchTitle} searchRate={searchRate}/>
     </div>
   );
 }

@@ -1,0 +1,82 @@
+/* Container principal de la carte - taille fixe standard AGRANDIE */
+.movie-card {
+  width: 320px;               /* largeur augmentée de 260px à 320px */
+  height: 800px;              /* hauteur augmentée de 420px à 520px */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 12px;
+  overflow: hidden;            /* cache le contenu qui dépasse */
+  border: 1px solid #ddd;
+  background-color: #929aa0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+ 
+}
+
+/* Style de l'image - taille fixe augmentée */
+.movie-card img {
+  width: 100%;
+  height: 60%;               /* hauteur augmentée de 180px à 230px */
+  object-fit: cover;           /* coupe/redimensionne sans déformation */
+}
+
+/* Contenu du texte - remplit l'espace restant */
+.movie-card-body {
+  padding: 10px;               /* padding augmenté de 12px à 16px */
+  flex-grow: 1;                /* prend tout l'espace disponible */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+          
+}
+
+/* Titre - hauteur fixe augmentée */
+.movie-title {
+  font-size: 20px;             /* taille police augmentée de 18px à 20px */
+  font-weight: bold;
+  margin-bottom: 10px;         /* marge augmentée de 8px à 10px */
+  height: 70px;                /* hauteur augmentée de 50px à 60px */
+  overflow: hidden;            /* cache le texte qui dépasse */
+  text-overflow: ellipsis;     /* ajoute "..." si texte trop long */
+  display: flex;
+  align-items: center;
+}
+
+/* Description - hauteur fixe augmentée */
+.movie-description {
+  font-size: 15px;             /* taille police augmentée de 14px à 15px */
+  color: #131313;
+  height: 90px;                /* hauteur augmentée de 70px à 90px */
+  overflow: hidden;            /* cache le texte qui dépasse */
+  text-overflow: ellipsis;     /* limite le texte avec "..." */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;       /* max 3 lignes */
+  -webkit-box-orient: vertical;
+}
+
+/* Rating centré */
+.movie-rating {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;              /* marge augmentée de 8px à 10px */
+  height: 35px;                /* hauteur augmentée de 30px à 35px */
+}
+
+/* Bouton - taille standard augmentée */
+.movie-button {
+  width: 100%;
+  padding: 12px;               /* padding augmenté de 10px à 12px */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+  height: 45px;                /* hauteur augmentée de 40px à 45px */
+  font-size: 16px;             /* taille police augmentée */
+  font-weight: 500;
+}
+
+.movie-button:hover {
+  background-color: #0056b3;
+}
